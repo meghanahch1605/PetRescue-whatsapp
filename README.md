@@ -1,55 +1,145 @@
-# Pet Rescue WhatsApp Automation
+# PetRescue WhatsApp Automation
 
-This project implements a simple automation pipeline for a pet rescue/adoption workflow.
+## Overview
+This project demonstrates a simple automation pipeline that processes pet rescue or adoption messages. The system extracts important information from incoming messages and automatically stores the data in Google Sheets and schedules a follow-up call using Google Calendar.
 
-Instead of a website interface, the system processes incoming text messages describing pets available for adoption.
+The goal of this assignment is to build an automation workflow without using any LLM APIs.
 
-The system extracts important information, stores it in Google Sheets, and schedules a follow-up WhatsApp call using Google Calendar.
+---
 
-## Features
+## Problem Statement
+When a rescue message is received (for example via WhatsApp), important information such as:
 
-- NLP based text extraction using spaCy
-- Extracts pet and owner information
-- Saves data to Google Sheets
-- Creates follow-up call events in Google Calendar
-- Simple automation pipeline
-- No LLM APIs used
+- Pet type
+- Owner name
+- Phone number
+- Location
 
-## System Workflow
+needs to be captured and stored. Additionally, a follow-up call must be scheduled.
 
-Text Message  
-↓  
-NLP Parsing  
-↓  
-Extract Pet + Owner Details  
-↓  
-Save to Google Sheets  
-↓  
-Schedule WhatsApp Call  
+This project automates that workflow.
 
-## Example Message
+---
 
-Hi, I want to give my dog for adoption.  
-My name is Rahul and I live in Hyderabad.  
-Please contact me at 9876543210.
+## Example Input Message
+
+Dog available for adoption  
+Owner: Rahul  
+Phone: 9876543210  
+Location: Hyderabad  
+
+---
+
+## Workflow
+
+1. Receive a text message containing pet rescue information
+2. Parse the message and extract important details
+3. Store the data in Google Sheets
+4. Automatically create a follow-up call event in Google Calendar
+
+---
+
+## Project Structure
+
+PetRescue-whatsapp/
+
+main.py → Main script that runs the automation pipeline  
+parser.py → Extracts pet rescue details from text messages  
+sheets.py → Handles Google Sheets integration  
+calendar_event.py → Creates Google Calendar events  
+data/sample_message.txt → Example message for testing  
+requirements.txt → Project dependencies  
+
+---
 
 ## Technologies Used
 
-Python  
-spaCy NLP  
-Google Sheets API  
-Google Calendar API  
+- Python
+- Google Sheets API
+- Google Calendar API
+- Regular Expressions
+- spaCy (for entity extraction)
 
-## Setup
+---
 
-Install dependencies
+## Setup Instructions
+
+### Clone the repository
+
+git clone https://github.com/meghanahch1605/PetRescue-whatsapp.git
+
+cd PetRescue-whatsapp
+
+---
+
+### Install dependencies
 
 pip install -r requirements.txt
 
-Download NLP model
+---
+
+### Install spaCy model
 
 python -m spacy download en_core_web_sm
 
-Run the project
+---
+
+### Configure Google APIs
+
+1. Enable Google Sheets API
+2. Enable Google Calendar API
+3. Create OAuth credentials from Google Cloud
+4. Download credentials file
+5. Save it as:
+
+client_secret.json
+
+Place the file in the project directory.
+
+---
+
+### Run the project
 
 python main.py
+
+---
+
+## Expected Output
+
+### Google Sheets
+
+Pet | Owner | Phone | Location  
+Dog | Rahul | 9876543210 | Hyderabad  
+
+---
+
+### Google Calendar
+
+Event created:
+
+Pet Rescue Follow-up  
+WhatsApp call with Rahul
+
+---
+
+## Features
+
+- Automated message processing
+- Data extraction from text
+- Google Sheets data storage
+- Google Calendar event scheduling
+- API-based automation pipeline
+
+---
+
+## Author
+
+Meghana harini Chollangi  
+B.Tech Computer Science & Engineering (Data Science)  
+Raghu Institute of Technology
+
+---
+
+## GitHub Repository
+
+https://github.com/meghanahch1605/PetRescue-whatsapp
